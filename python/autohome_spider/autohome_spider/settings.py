@@ -29,3 +29,8 @@ FEED_FORMAT = 'csv'
 LOG_LEVEL = 'INFO'
 # 日志文件路径
 LOG_FILE = 'scrapy.log'
+
+# 开启重试
+RETRY_ENABLED = True
+# 重试次数
+RETRY_TIMES = 3
