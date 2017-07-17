@@ -11,9 +11,9 @@ from scrapy.downloadermiddlewares.useragent import UserAgentMiddleware
 
 # user agent middleware
 # 在user agent池中，随机选取一个设置到request的Header中
-class RotateUserAgentMiddleware(UserAgentMiddleware):
+class RandomUserAgentMiddleware(UserAgentMiddleware):
     def __init__(self, user_agent=''):
-        super(RotateUserAgentMiddleware, self).__init__(user_agent)
+        super(RandomUserAgentMiddleware, self).__init__(user_agent)
         self.user_agent = user_agent
 
     def process_request(self, request, spider):
