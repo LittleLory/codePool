@@ -25,3 +25,4 @@ class ModelItem(scrapy.Item):
     series_id = scrapy.Field()
     name = scrapy.Field()
     group = scrapy.Field()
+    price = scrapy.Field()

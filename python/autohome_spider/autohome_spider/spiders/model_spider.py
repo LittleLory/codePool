@@ -67,14 +67,18 @@ class ModelSpider(CrawlSpider):
 
                 models = panel[i * 2 + 1]
                 for model in models.xpath('li'):
-                    model_name = model.xpath('div/div/p/a/text()').extract()
-                    model_id = model.xpath('div/div/p/@data-gcjid').extract()
+                    model_name = model.xpath('div[@class="interval01-list-cars"]/div/p/a/text()')[0].extract()
+                    model_id = model.xpath('div[@class="interval01-list-cars"]/div/p/@data-gcjid')[0].extract()
+                    price = model.xpath('div[@class="interval01-list-guidance"]/div/text()')[0].re(r'(\d+\.\d+)')
+                    if not price:
+                        price = model.xpath('div[@class="interval01-list-guidance"]/div/text()')[1].re(r'(\d+\.\d+)')
 
                     model = ModelItem()
                     model['id'] = model_id
                     model['name'] = model_name
                     model['series_id'] = series_id
                     model['group'] = group
+                    model['price'] = price
                     yield model
                     count += 1
 
@@ -103,15 +107,20 @@ class ModelSpider(CrawlSpider):
         else:
             log.msg('[parse_selling] is not selling.')
             count = 0
-            model_tags = response.xpath('//td[@class="name_d"]/a')
+            model_tags = response.xpath('//table/tboby/tr')
+            if not model_tags or len(model_tags) == 0:
+                model_tags = response.xpath('//table/tr')
+
             for model_tag in model_tags:
-                model_id = model_tag.xpath('@href')[0].re(r'spec/(\d+)/')[0]
-                model_name = model_tag.xpath('@title')[0].extract()
+                model_id = model_tag.xpath('td[@class="name_d"]/a/@href')[0].re(r'spec/(\d+)/')[0]
+                model_name = model_tag.xpath('td[@class="name_d"]/a/@title')[0].extract()
+                price = model_tag.xpath('td[@class="price_d"]/text()').re(ur'(\d+\.\d+)')
 
                 model = ModelItem()
                 model['id'] = model_id
                 model['name'] = model_name
                 model['series_id'] = series_id
+                model['price'] = price
                 yield model
                 count += 1
             log.msg('[parse_selling] model count is %d' % count)
@@ -127,12 +136,14 @@ class ModelSpider(CrawlSpider):
             model_id = model['Id']
             model_name = model['Name']
             group = model['GroupName']
+            price = model['Price']
 
             model = ModelItem()
             model['id'] = model_id
             model['name'] = model_name
             model['series_id'] = series_id
             model['group'] = group
+            model['price'] = price
             yield model
             count += 1
         log.msg('[parse_selled] model count is %d' % count)
