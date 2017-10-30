@@ -26,3 +26,11 @@ class ModelItem(scrapy.Item):
     name = scrapy.Field()
     group = scrapy.Field()
     price = scrapy.Field()
+
+class SpecItem(scrapy.Item):
+    id = scrapy.Field()
+    spec = scrapy.Field()
+
+class DetailItem(scrapy.Item):
+    id = scrapy.Field()
+    detail = scrapy.Field()

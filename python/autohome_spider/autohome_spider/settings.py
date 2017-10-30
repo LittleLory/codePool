@@ -23,11 +23,11 @@ ITEM_PIPELINES = {
 }
 
 # 数据集输出路径
-# FEED_URI = 'data/%(name)s_%(time)s.csv'
+FEED_URI = 'data/%(name)s_%(time)s.json'
 # 数据集输出格式
-# FEED_FORMAT = 'csv'
+FEED_FORMAT = 'json'
 
 # 日志级别
-# LOG_LEVEL = 'INFO'
+LOG_LEVEL = 'INFO'
 # 日志文件路径
 # LOG_FILE = 'scrapy.log'
