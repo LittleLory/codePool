@@ -34,8 +34,8 @@ from email.header import Header
 def send_mail(receivers, text):
     # 第三方 SMTP 服务
     mail_host = 'smtp.sina.com'  # 设置服务器
-    mail_user = 'jlh1992@sina.com'  # 用户名
-    mail_pass = 'qwer&1234.'  # 口令
+    mail_user = 'xxx@sina.com'  # 用户名
+    mail_pass = 'xxxxxxxx'  # 口令
 
     message = MIMEText(text, 'plain', 'utf-8')
     message['From'] = Header(mail_user)
