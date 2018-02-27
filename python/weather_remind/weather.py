@@ -15,7 +15,7 @@ def fetch_weather_datas():
     body = response.read()
 
     # 用BeautifulSoup解析，取出7天的天气数据
-    soup = BeautifulSoup(body)
+    soup = BeautifulSoup(body, "lxml")
     tags = soup.select('#7d > ul > li')
 
     return ['%s\t%s\t%s\t%s' %  # 对七天的数据分别解析，将解析后的每天的数据拼接成“日期+天气+最高气温+最低气温”的字符串，\t分隔
@@ -55,8 +55,8 @@ def send_mail(receivers, text):
 
 
 # 传入爬到的天气数据
-def is_need_remind(weather_datas):
-    return '雨' in weather_datas[0]
+def is_need_remind(weather_data):
+    return '雨' in weather_data
 
 # 从配置文件中，读取接收方邮箱地址List
 def read_receivers(path):
@@ -75,7 +75,7 @@ def log(msg):
 def main():
     try:
         weather_datas = fetch_weather_datas()
-        if is_need_remind(weather_datas):
+        if is_need_remind(weather_datas[0]):
             send_mail(read_receivers('receivers.txt'), '\n'.join(weather_datas))
         else:
             log('今天天气良好')
