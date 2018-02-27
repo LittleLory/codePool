@@ -10,3 +10,4 @@
 ### python相关
 * [【小项目】汽车之家爬虫(scrapy)](https://github.com/LittleLory/codePool/tree/master/python/autohome_spider)
 * [【小项目】天气提醒脚本](https://github.com/LittleLory/codePool/tree/master/python/weather_remind)
+* [【小项目】空气质量播报脚本](https://github.com/LittleLory/codePool/tree/master/python/air_conditon_remind)
