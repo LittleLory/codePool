@@ -18,16 +18,22 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
+if len(sys.argv) != 2:
+    print('usage: python jianshu_monitor.py base_path')
+    exit(15)
+
+base_path = sys.argv[1]
+
 logger = logging.getLogger('monitor')
 formatter = logging.Formatter('%(asctime)s %(levelname)-8s: %(message)s')
 
-file_handler = logging.FileHandler('run.log')
+file_handler = logging.FileHandler('%s/run.log' % base_path)
 file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 
-# console_handler = logging.StreamHandler(sys.stdout)
-# console_handler.setFormatter(formatter)
-# logger.addHandler(console_handler)
+console_handler = logging.StreamHandler(sys.stdout)
+console_handler.setFormatter(formatter)
+logger.addHandler(console_handler)
 
 logger.setLevel(logging.INFO)
 
@@ -94,7 +100,7 @@ def main():
     target_url = 'https://www.jianshu.com/u/2d48ed845229'
     try:
         i = 1
-        f = codecs.open('page_info.log', 'a+')
+        f = codecs.open('%s/page_info.log' % base_path, 'a+')
         while True:
             url = '%s?order_by=shared_at&page=%d' % (target_url, i)
             code, body = http_request(url)
@@ -115,3 +121,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
