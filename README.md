@@ -5,7 +5,7 @@
 
 ## 目录
 ### java相关
-* [【工具类】HTTP请求工具类(apache httpclient)](https://github.com/LittleLory/codePool/blob/master/java/apache_HttpClient_PoolManager_demo.java)
+* [【工具类】HTTP请求工具类(apache httpclient)](https://github.com/LittleLory/codePool/tree/master/java)
 
 ### python相关
 * [【小项目】汽车之家爬虫(scrapy)](https://github.com/LittleLory/codePool/tree/master/python/autohome_spider)
