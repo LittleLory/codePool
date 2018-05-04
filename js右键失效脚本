@@ -1,0 +1,10 @@
+第一步，将书签栏设置为显示状态！
+
+第二步，添加新书签——》在标签栏点击右键，选择“添加网页”。
+
+
+第三步，设置新书签的内容。
+1、起名。这个凭个人爱好吧
+2、网址栏输入：
+javascript:(function() { function R(a){ona = "on"+a; if(window.addEventListener) window.addEventListener(a, function (e) { for(var n=e.originalTarget; n; n=n.parentNode) n[ona]=null; }, true); window[ona]=null; document[ona]=null; if(document.body) document.body[ona]=null; } R("contextmenu"); R("click"); R("mousedown"); R("mouseup"); R("selectstart");})()
+3、保存。
